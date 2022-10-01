@@ -5,20 +5,20 @@ include('header.php');
 // Modifier nouvelle recette
 if(isset($_POST['submit'])  ) {
     $id = $_POST['id'];
-    $creator_id = $_POST['creator_id'];
+    // $creator_id = $_POST['creator_id'];
     $title = $_POST['title'];
     $image = $_POST['image'];
     $description = $_POST['description'];
     $category = $_POST['category'];
     $nbr_people = $_POST['nbr_people'];
-    $publishdate = $_POST['publishdate'];
+    $publish_date = $_POST['publish_date'];
     $level = $_POST['level'];
     $video = $_POST['video'];
     $rating = $_POST['rating'];
 
 
     
-$sql= "UPDATE `recettes` SET `creator_id`='$creator_id',`title`='$title',`image`='$image',`description`='$description',`category`='$category',`nbr_people`='$nbr_people',`publishdate`='$publishdate',`level`='$level',`video`='$video' WHERE `id`= '$id'";
+$sql= "UPDATE `recepies` SET `creator_id`='$creator_id',`title`='$title',`image`='$image',`description`='$description',`category`='$category',`nbr_people`='$nbr_people',`publish_date`='$publish_date',`level`='$level',`video`='$video' WHERE `id`= '$id'";
 
 $results = $bdd->query($sql);
 
@@ -27,7 +27,7 @@ header("location:list-recepie.php");
 
 if(isset($_GET['id'])){
 $id = $_GET['id'];
-$formUpdateRecepie = $bdd->query("SELECT * FROM `recettes` WHERE `id`= $id");
+$formUpdateRecepie = $bdd->query("SELECT * FROM `recepies` WHERE `id`= $id");
 $ok = $formUpdateRecepie->fetch();
 
 }
@@ -41,8 +41,8 @@ $ok = $formUpdateRecepie->fetch();
             <input type="text" name="idvisible" value="<?php echo $ok['id'];?>" disabled>
             <input type="hidden" name="id" value="<?php echo $ok['id'];?>">
 
-            <label for="creator_id">Créateur-rice</label>
-            <input type="text" name="creator_id" value="<?php echo $ok['creator_id'];?>">
+            <!-- <label for="creator_id">Créateur-rice</label>
+            <input type="text" name="creator_id" value="<?php echo $ok['creator_id'];?>"> -->
 
             <label for="title">Titre de la recette</label>
             <input type="title" name="title" value="<?php echo $ok['title'];?>">
@@ -59,8 +59,8 @@ $ok = $formUpdateRecepie->fetch();
             <label for="nbr_people">Nombre de parts</label>
             <input type="nbr_people" name="nbr_people" value="<?php echo $ok['nbr_people'];?>">
 
-            <label for="publishdate">Date de publication</label>
-            <input type="publishdate" name="publishdate" value="<?php echo $ok['publishdate'];?>">
+            <label for="publish_date">Date de publication</label>
+            <input type="publish_date" name="publish_date" value="<?php echo $ok['publish_date'];?>">
 
             <label for="level">Niveau de difficulté</label>
             <input type="level" name="level" value="<?php echo $ok['level'];?>">

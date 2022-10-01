@@ -5,14 +5,14 @@ include('header.php');
 // Delete recepie
 if(isset($_GET['id'])){
 $id = $_GET['id'];
-$sql = "SELECT `id`, `creator_id`, `title`, `image`, `description`, `category`, `nbr_people`, `publishdate`, `level`, `video`, `rating` FROM `recettes` WHERE id=$id";
+$sql = "SELECT `id`, `creator_id`, `title`, `image`, `ingredients`, `description`, `category`, `nbr_people`, `publishdate`, `level`, `video`, `rating` FROM `recettes` WHERE id=$id";
 $results = $bdd->query($sql);
 $donnees = $results->fetch();
 }
 
 if(isset($_POST['supprimer'])) {
     $id = $_POST ['id'];
-$sql = "DELETE FROM `recettes` WHERE id=$id";
+$sql = "DELETE FROM `recepies` WHERE id=$id";
 $results = $bdd->query($sql);
 header("location:list-recepie.php");
 }
@@ -36,6 +36,9 @@ header("location:list-recepie.php");
 
             <label for="image">Image</label>
             <input type="image" name="image" value="<?php echo $donnees['image'];?>" disabled>
+
+            <label for="ingredients">Description de la recette</label>
+            <input type="ingredients" name="ingredients" value="<?php echo $donnees['ingredients'];?>" disabled>
 
             <label for="description">Description de la recette</label>
             <input type="description" name="description" value="<?php echo $donnees['description'];?>" disabled>

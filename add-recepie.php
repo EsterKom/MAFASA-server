@@ -4,21 +4,22 @@ include('header.php');
 // Insert a new recepie
 //print_r($_POST);
 if(isset($_POST['submit'])) {
-    $creator_id = 1;
+    $author = 1;
     $title = $_POST['title'];
     $image = $_POST['image'];
+    $ingredients = $_POST['ingredients'];
     $description = $_POST['description'];
     $category = $_POST['category'];
     $nbr_people = $_POST['nbr_people'];
-    $publishdate = $_POST['publishdate'];
+    $publish_date = $_POST['publish_date'];
     $prep_time = $_POST['prep_time'];
     $level = $_POST['level'];
     $video = $_POST['video'];
     $rating = $_POST['rating'];
     
-$sql = "insert into recettes (creator_id, title, image, description, category, nbr_people, publishdate, level, video, rating, prep_time) VALUES ($creator_id, '$title', '$image', '$description', '$category', '$nbr_people', '$publishdate', '$level', '$video', '$rating', '$prep_time')";
+$sql = "insert into recepies (author, title, image, ingredients, description, category, nbr_people, publish_date, level, video, rating, prep_time) VALUES ($author, '$title', '$image', '$ingredients', '$description', '$category', '$nbr_people', '$publish_date', '$level', '$video', '$rating', '$prep_time')";
 
-//var_dump($sql);
+var_dump($sql);
 
 $results = $bdd->query($sql);
 //$bdd->exec($sql);
@@ -27,7 +28,7 @@ $results = $bdd->query($sql);
         echo "Votre recette a bien été ajoutée! 😋";
     } else {
        // var_dump($bdd->errorInfo());
-    die();
+    die("erreur:");
     }
 //die();
 header("location:list-recepie.php");   
@@ -78,7 +79,11 @@ header("location:list-recepie.php");
             <option>Difficile</option>
             </select>
         </div>
-           
+
+        <div class="form-group">
+            <label for="ingredients">Ingrédients</label>
+            <textarea class="form-control" name= "ingredients" id="ingredients" rows="3"></textarea>
+        </div>
 
         <div class="form-group">
             <label for="description">Description de la recette</label>
@@ -93,7 +98,7 @@ header("location:list-recepie.php");
         
         <div class="form-group">
             <label>Date de publication</label>
-            <input type="date" class="form-control" name= "publishdate" id="publishdate" placeholder="">
+            <input type="date" class="form-control" name= "publish_date" id="publish_date" placeholder="">
         </div>
 
         <div class="form-group">
